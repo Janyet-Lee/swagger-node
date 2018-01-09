@@ -2,7 +2,7 @@ var express = require('express');
 var fs = require('fs');
 var path = require('path');
 var app = express();
-var config =require('./private.config')
+var config = require('./private.config')
 
 var params
 

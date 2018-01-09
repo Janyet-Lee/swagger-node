@@ -145,12 +145,12 @@
   </div>
   <div id="swagger-ui"></div>
 
-  <script src='./api-config.js'></script>
+  <script src='./apiConfig.js'></script>
 
   <script>
     window.onload = function () {
       var parent = document.getElementById('swagger-ui')
-      configArray.forEach(element => {
+      window.configArray.forEach(element => {
         var tag = document.createElement('a')
         tag.href = `/swagger/api/${element.fileName}`
         tag.classList.add('api-item')
