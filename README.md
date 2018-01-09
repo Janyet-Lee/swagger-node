@@ -8,3 +8,4 @@
 
 - 导出的json接口文件请放在public目录下api目录里面
 - 服务器启动相关的配置和api文档的配置存放在项目目录下private.config.js里,接口文档的命名名称请遵循api-xxx.json的原则，比如停车场项目：api-parking-lot.json
+- enjoy
