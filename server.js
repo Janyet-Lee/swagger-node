@@ -2,6 +2,7 @@ var express = require('express');
 var fs = require('fs');
 var path = require('path');
 var app = express();
+var config =require('./private.config')
 
 var params
 
@@ -30,7 +31,7 @@ app.get('/*', function(req, res, next) {
   res.redirect('/swagger/home.html')
 })
  
-var server = app.listen(3200, function () {
+var server = app.listen(config.port, function () {
   var host = server.address().address
   var port = server.address().port
   console.log("应用实例，访问地址为 http://%s:%s", host, port)
