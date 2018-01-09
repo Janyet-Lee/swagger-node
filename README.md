@@ -1,5 +1,5 @@
 ## 启动方式
-
+- 复制private.config.example.js并重命名为private.config.js
 - npm install 安装项目依赖
 - npm start 启动服务器进程
 
