@@ -1,0 +1,616 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "56理财活动接口",
+    "version": "1.0.0",
+    "title": "56理财活动接口",
+    "termsOfService": ""
+  },
+  "tags": [
+    {
+      "name": "ActivityDogYear",
+      "description": "金狗旺财活动",
+      "externalDocs": {
+        "description": "",
+        "url": "https://56lctest.56p2b.com"
+      }
+    }
+  ],
+  "paths": {
+    "/Wechat/ActivityDogYear/index": {
+      "post": {
+        "tags": [
+          "ActivityDogYear"
+        ],
+        "summary": "首页",
+        "description": "",
+        "operationId": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/index"
+            }
+          }
+        }
+      }
+    },
+    "/Wechat/ActivityDogYear/isLogin": {
+      "post": {
+        "tags": [
+          "ActivityDogYear"
+        ],
+        "summary": "登录判断",
+        "description": "",
+        "operationId": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/login"
+            }
+          }
+        }
+      }
+    },
+    "/Wechat/User/smcode": {
+      "post": {
+        "tags": [
+          "ActivityDogYear"
+        ],
+        "summary": "发送验证码",
+        "description": "",
+        "operationId": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "mobile",
+            "in": "query",
+            "description": "登录手机号",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "msgtype",
+            "in": "query",
+            "description": "短信类型（活动短信默认为9）",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/smcodeData"
+            }
+          }
+        }
+      }
+    },
+    "/Wechat/ActivityDogYear/loginRegister": {
+      "post": {
+        "tags": [
+          "ActivityDogYear"
+        ],
+        "summary": "注册&登录",
+        "description": "",
+        "operationId": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "mobile",
+            "in": "query",
+            "description": "登录手机号",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "verifyCode",
+            "in": "query",
+            "description": "短信验证码",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "smLogId",
+            "in": "query",
+            "description": "短信验证码id，/User/smcoe接口返回的data参数",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/loginRegister"
+            }
+          }
+        }
+      }
+    },
+    "/Wechat/ActivityDogYear/drawPrizeAjax": {
+      "post": {
+        "tags": [
+          "ActivityDogYear"
+        ],
+        "summary": "检查机会和派奖",
+        "description": "",
+        "operationId": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/drawPrizeAjax"
+            }
+          }
+        }
+      }
+    },
+    "/Wechat/ActivityDogYear/buy": {
+      "post": {
+        "tags": [
+          "ActivityDogYear"
+        ],
+        "summary": "跳转到购买页",
+        "description": "",
+        "operationId": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "bids_id",
+            "in": "query",
+            "description": "产品id乐无忧3涨无忧4季无忧2",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "bidsmoney",
+            "in": "query",
+            "description": "预期投资金额",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/buy"
+            }
+          }
+        }
+      }
+    },
+    "/Wechat/ActivityDogYear/createOrder": {
+      "post": {
+        "tags": [
+          "ActivityDogYear"
+        ],
+        "summary": "提交订单",
+        "description": "",
+        "operationId": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "money",
+            "in": "query",
+            "description": "投资金额",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "bcid",
+            "in": "query",
+            "description": "投资标的",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tradepassword",
+            "in": "query",
+            "description": "交易密码（余额支付需要，银行卡支付不需要，混合支付不需要）",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "paytype",
+            "in": "query",
+            "description": "支付方式（0余额支付1银行卡支付）",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/order"
+            }
+          }
+        }
+      }
+    },
+    "/Wechat/Payment/index": {
+      "get": {
+        "tags": [
+          "ActivityDogYear"
+        ],
+        "summary": "支付接口",
+        "description": "",
+        "operationId": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "order_id",
+            "in": "query",
+            "description": "订单id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "ReturnUrl",
+            "in": "query",
+            "description": "回调地址",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/Wechat/ActivityDogYear/myprize": {
+      "get": {
+        "tags": [
+          "ActivityDogYear"
+        ],
+        "summary": "跳转我的奖品页",
+        "description": "",
+        "operationId": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/myprize"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "index": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/index_data"
+        },
+        "status": {
+          "$ref": "#/definitions/index_status"
+        }
+      }
+    },
+    "index_data": {
+      "type": "object",
+      "properties": {
+        "pageTitle": {
+          "type": "string"
+        },
+        "isLogin": {
+          "type": "integer"
+        },
+        "userSurplusChance": {
+          "type": "integer",
+          "description": "剩余抽奖次数"
+        },
+        "userCurrentTime": {
+          "type": "integer",
+          "description": "当前第几次抽奖"
+        }
+      }
+    },
+    "index_status": {
+      "type": "object",
+      "properties": {
+        "errCode": {
+          "type": "integer"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "login": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/login_data"
+        },
+        "status": {
+          "$ref": "#/definitions/login_status"
+        }
+      }
+    },
+    "login_status": {
+      "type": "object",
+      "properties": {
+        "errCode": {
+          "type": "integer"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "login_data": {
+      "type": "object",
+      "properties": {
+        "isLogin": {
+          "type": "integer",
+          "description": "登录状态"
+        }
+      }
+    },
+    "smcodeData": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "string"
+        }
+      }
+    },
+    "loginRegister": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "drawPrizeAjax": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/drawPrizeAjaxStataus"
+        },
+        "data": {
+          "$ref": "#/definitions/drawPrizeAjaxData"
+        }
+      }
+    },
+    "drawPrizeAjaxStataus": {
+      "type": "object",
+      "properties": {
+        "errCode": {
+          "type": "integer"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "drawPrizeAjaxData": {
+      "type": "object",
+      "properties": {
+        "prize_name": {
+          "type": "string"
+        },
+        "userCurrentTime": {
+          "type": "integer",
+          "description": "当前抽奖次数"
+        },
+        "userSurplusChance": {
+          "type": "integer",
+          "description": "剩余抽奖次数"
+        }
+      }
+    },
+    "buy": {
+      "type": "object",
+      "properties": {
+        "bank": {
+          "$ref": "#/definitions/bank"
+        },
+        "maxMoney": {
+          "type": "string"
+        },
+        "maxremainmoney": {
+          "type": "string",
+          "description": "剩余可投金额"
+        },
+        "nextbidsmoney": {
+          "type": "string",
+          "description": "下一标的可投金额"
+        },
+        "wxuser": {
+          "$ref": "#/definitions/wxuser"
+        },
+        "bids": {
+          "$ref": "#/definitions/bids"
+        },
+        "bank_account_sub": {
+          "type": "string",
+          "description": "银行卡尾号"
+        },
+        "minMoney": {
+          "type": "string",
+          "description": "最小投资金额"
+        },
+        "returnUrl": {
+          "type": "string"
+        },
+        "bcid": {
+          "type": "string",
+          "description": "标的id"
+        },
+        "bidsmoney": {
+          "type": "string",
+          "description": "预期投资金额"
+        }
+      }
+    },
+    "bank": {
+      "type": "object",
+      "properties": {
+        "maximum": {
+          "type": "string",
+          "description": "银行卡每日单笔限额"
+        },
+        "bank_code": {
+          "type": "string"
+        },
+        "bank_name": {
+          "type": "string"
+        }
+      }
+    },
+    "wxuser": {
+      "type": "object",
+      "properties": {
+        "account_balance": {
+          "type": "string",
+          "description": "账户余额"
+        }
+      }
+    },
+    "bids": {
+      "type": "object",
+      "properties": {
+        "bids_name": {
+          "type": "string"
+        },
+        "yearrate": {
+          "type": "string",
+          "description": "年化收益率"
+        },
+        "locktime": {
+          "type": "string",
+          "description": "锁定期"
+        }
+      }
+    },
+    "order": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/order_status"
+        },
+        "data": {
+          "$ref": "#/definitions/order_data"
+        }
+      }
+    },
+    "order_data": {
+      "type": "object",
+      "properties": {
+        "orderid": {
+          "type": "string"
+        },
+        "ReturnUrl": {
+          "type": "string"
+        }
+      }
+    },
+    "order_status": {
+      "type": "object",
+      "properties": {
+        "errCode": {
+          "type": "integer"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "myprize": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/myprize_data"
+        },
+        "status": {
+          "$ref": "#/definitions/myprize_status"
+        }
+      }
+    },
+    "myprize_data": {
+      "type": "object",
+      "properties": {
+        "pageTitle": {
+          "type": "string"
+        },
+        "inf0": {
+          "$ref": "#/definitions/myprize_info"
+        }
+      }
+    },
+    "myprize_status": {
+      "type": "object",
+      "properties": {
+        "errCode": {
+          "type": "integer"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "myprize_info": {
+      "type": "object",
+      "properties": {
+        "prize_type": {
+          "type": "string",
+          "description": "优惠券类型"
+        },
+        "prize_amount": {
+          "type": "string",
+          "description": "优惠券金额"
+        },
+        "require_money": {
+          "type": "string",
+          "description": "起投金额"
+        }
+      }
+    }
+  }
+}

@@ -27,6 +27,7 @@ app.get('/swagger/api/:fileName', function(req, res, next) {
 app.use('/swagger/api/:name',express.static('public'));
 app.use('/swagger',express.static('public'));
 
+
 app.get('/*', function(req, res, next) {
   res.redirect('/swagger/home.html')
 })

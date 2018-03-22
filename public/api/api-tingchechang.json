@@ -1,1 +1,1393 @@
-{"swagger":"2.0","info":{"description":"提供用户服务相关api接口测试22222222","version":"1.0.0","title":"用户服务api","termsOfService":"API TERMS URL","license":{"name":"许可证书","url":"许可证书url"}},"host":"192.168.2.122:8082","basePath":"/","tags":[{"name":"微信公众号","description":"Wechat Controller"},{"name":"管理后台用户模块","description":"Back User Controller"},{"name":"支付宝生活号","description":"Ali Account Controller"},{"name":"图片上传","description":"Upload Controller"},{"name":"管理后台车辆模块","description":"车辆模块"},{"name":"用户模块","description":"用户模块"}],"paths":{"/admin/car/page":{"get":{"tags":["管理后台车辆模块"],"summary":"获取车辆列表","operationId":"pageUsingGET","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"page","in":"query","description":"页码","required":false,"type":"integer","format":"int64"},{"name":"count","in":"query","description":"每页条数","required":false,"type":"integer","format":"int64"},{"name":"carNum","in":"query","description":"车牌号","required":false,"type":"string"},{"name":"owner","in":"query","description":"车主名称","required":false,"type":"string"}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/PagerResponseDto«Car»"}}}}},"/admin/user/disable":{"post":{"tags":["管理后台用户模块"],"summary":"禁用/启用用户","operationId":"disableUsingPOST","consumes":["application/json"],"produces":["*/*"],"parameters":[{"in":"body","name":"userId","description":"userId","required":false,"schema":{"type":"integer","format":"int64"}},{"name":"carNum","in":"formData","description":"车牌号","required":false,"type":"string"},{"name":"ifEnable","in":"formData","description":"手机号码","required":false,"type":"string"}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ResponseDto"}}}}},"/admin/user/get":{"get":{"tags":["管理后台用户模块"],"summary":"获取用户信息","operationId":"getUsingGET","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"userId","in":"query","description":"用户id","required":false,"type":"string"}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ResponseDto"}}}}},"/admin/user/page":{"get":{"tags":["管理后台用户模块"],"summary":"获取用户列表","operationId":"pageUsingGET_1","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"page","in":"query","description":"页码","required":false,"type":"integer","format":"int64"},{"name":"count","in":"query","description":"每页条数","required":false,"type":"integer","format":"int64"},{"name":"carNum","in":"query","description":"车牌号","required":false,"type":"string"},{"name":"phone","in":"query","description":"手机号码","required":false,"type":"string"},{"name":"status","in":"query","description":"账户状态","required":false,"type":"string"}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/PagerResponseDto«User»"}}}}},"/common/ali/auth":{"get":{"tags":["支付宝生活号"],"summary":"auth","operationId":"authUsingGET","consumes":["application/json"],"produces":["*/*"],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ResponseDto"}}}}},"/common/ali/callback":{"get":{"tags":["支付宝生活号"],"summary":"callback","operationId":"callbackUsingGET","consumes":["application/json"],"produces":["*/*"],"responses":{"200":{"description":"OK"}}}},"/common/upload/callback":{"post":{"tags":["图片上传"],"summary":"callback","operationId":"callbackUsingPOST","consumes":["application/json"],"produces":["*/*"],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ResponseDto"}}}}},"/common/upload/getToken":{"get":{"tags":["图片上传"],"summary":"获取图片上传token","operationId":"getTokenUsingGET","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"x-access-token","in":"header","description":"x-access-token","required":true,"type":"string"}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ResponseDto"}}}}},"/common/user/checkCaptcha":{"post":{"tags":["用户模块"],"summary":"检查验证码","operationId":"checkCaptchaUsingPOST","consumes":["application/json"],"produces":["*/*"],"parameters":[{"in":"body","name":"captcha","description":"验证码","required":false,"schema":{"type":"string"}}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ResponseDto"}}}}},"/common/user/checkLogin":{"get":{"tags":["用户模块"],"summary":"检查用户登陆状态","operationId":"checkLoginUsingGET","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"x-access-token","in":"header","description":"x-access-token","required":false,"type":"string"},{"name":"token","in":"query","description":"登陆令牌","required":false,"type":"string"},{"name":"oauthId","in":"query","description":"用户授权唯一标识","required":false,"type":"string"}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ResponseDto"}}}}},"/common/user/getCaptcha":{"post":{"tags":["用户模块"],"summary":"获取验证码","description":"获取验证码","operationId":"getCaptchaUsingPOST","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"phone","in":"formData","description":"手机号码","required":true,"type":"string"},{"name":"channel","in":"formData","description":"渠道号  1:app; 2:公众号; 3:生活号","required":true,"type":"ref"}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ResponseDto«CaptchaRsp»"}}}}},"/common/user/getModCaptcha":{"post":{"tags":["用户模块"],"summary":"修改手机号码-获取短信验证码","operationId":"getCaptchaUsingPOST_1","consumes":["application/json"],"produces":["*/*"],"parameters":[{"in":"body","name":"phone","description":"phone","required":false,"schema":{"type":"string"}},{"in":"query","description":"phone","required":true,"type":"string"}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ResponseDto"}}}}},"/common/user/getPayPasswordCaptcha":{"post":{"tags":["用户模块"],"summary":"设置支付密码-获取短信验证码","operationId":"getCaptchaForPayPasswordUsingPOST","consumes":["application/json"],"produces":["*/*"],"parameters":[{"in":"body","name":"phone","description":"phone","required":false,"schema":{"type":"string"}},{"in":"query","description":"phone","required":true,"type":"string"}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ResponseDto"}}}}},"/common/user/getUserInfo":{"get":{"tags":["用户模块"],"summary":"获取用户信息","operationId":"getUserInfoUsingGET","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"x-access-token","in":"header","description":"x-access-token","required":true,"type":"string"}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ResponseDto«User»"}}}}},"/common/user/logOut":{"post":{"tags":["用户模块"],"summary":"登出","operationId":"loginOutUsingPOST","consumes":["application/json"],"produces":["*/*"],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ResponseDto"}}}}},"/common/user/login":{"post":{"tags":["用户模块"],"summary":"登录","operationId":"loginUsingPOST","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"uuid","in":"formData","description":"请求下发验证码时返回的uuid","required":true,"type":"string"},{"name":"phone","in":"formData","description":"手机号码","required":true,"type":"string"},{"name":"captcha","in":"formData","description":"验证码","required":true,"type":"string"},{"name":"oauthId","in":"formData","description":"第三方授权id","required":false,"type":"string"}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ResponseDto«User»"}}}}},"/common/user/updateHeadimg":{"post":{"tags":["用户模块"],"summary":"修改头像","operationId":"updateHeadimgUsingPOST","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"headImgKey","in":"formData","description":"头像key","required":true,"type":"string"}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ResponseDto"}}}}},"/common/user/updatePayPwd":{"post":{"tags":["用户模块"],"summary":"设置支付密码","operationId":"updatePayPwdUsingPOST","consumes":["application/json"],"produces":["*/*"],"parameters":[{"in":"body","name":"uuid","description":"uuid","required":false,"schema":{"type":"string"}},{"in":"body","name":"captcha","description":"验证码","required":false,"schema":{"type":"string"}},{"in":"body","name":"payPassword","description":"支付密码","required":false,"schema":{"type":"string"}}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ResponseDto"}}}}},"/common/user/updatePhone":{"post":{"tags":["用户模块"],"summary":"修改手机号","operationId":"updatePhoneUsingPOST","consumes":["application/json"],"produces":["*/*"],"parameters":[{"name":"x-access-token","in":"header","description":"x-access-token","required":true,"type":"string"},{"in":"body","name":"captcha","description":"captcha","required":false,"schema":{"type":"string"}},{"name":"phone","in":"formData","description":"手机号码","required":true,"type":"string"}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ResponseDto"}}}}},"/common/wechat/getJsapiTicket":{"get":{"tags":["微信公众号"],"summary":"getJsapiTicket","operationId":"getJsapiTicketUsingGET","consumes":["application/json"],"produces":["*/*"],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/ResponseDto"}}}}},"/common/wechat/oauth":{"get":{"tags":["微信公众号"],"summary":"微信登陆-获取用户信息","description":"微信登陆","operationId":"oauthForUserInfoUsingGET","consumes":["application/json"],"produces":["*/*"],"responses":{"200":{"description":"OK"}}}}},"definitions":{"AliAccount":{"type":"object","properties":{"aliUserId":{"type":"string"},"avatar":{"type":"string"},"city":{"type":"string"},"createdAt":{"type":"string","format":"date-time"},"gender":{"type":"integer","format":"int32"},"ifCertified":{"type":"boolean"},"ifStudentCertified":{"type":"string"},"nickname":{"type":"string"},"province":{"type":"string"},"updatedAt":{"type":"string","format":"date-time"},"user":{"$ref":"#/definitions/User"},"userId":{"type":"integer","format":"int64"},"userStatus":{"type":"string"},"userType":{"type":"string"}}},"CaptchaRsp":{"type":"object","properties":{"uuid":{"type":"string","description":"uuid"}}},"Car":{"type":"object","properties":{"carNum":{"type":"string"},"createdAt":{"type":"string","format":"date-time"},"updatedAt":{"type":"string","format":"date-time"},"user":{"$ref":"#/definitions/User"},"userId":{"type":"integer","format":"int64"}}},"PagerResponseDto«Car»":{"type":"object","properties":{"data":{"description":"数据","$ref":"#/definitions/Pager«Car»"},"status":{"description":"状态","$ref":"#/definitions/Status"}}},"PagerResponseDto«User»":{"type":"object","properties":{"data":{"description":"数据","$ref":"#/definitions/Pager«User»"},"status":{"description":"状态","$ref":"#/definitions/Status"}}},"Pager«Car»":{"type":"object","properties":{"array":{"type":"array","items":{"$ref":"#/definitions/Car"}},"count":{"type":"integer","format":"int64"},"extras":{"type":"object"},"offset":{"type":"integer","format":"int64"},"page":{"type":"integer","format":"int64"},"total":{"type":"integer","format":"int64"},"totalPageNo":{"type":"integer","format":"int64"}}},"Pager«User»":{"type":"object","properties":{"array":{"type":"array","items":{"$ref":"#/definitions/User"}},"count":{"type":"integer","format":"int64"},"extras":{"type":"object"},"offset":{"type":"integer","format":"int64"},"page":{"type":"integer","format":"int64"},"total":{"type":"integer","format":"int64"},"totalPageNo":{"type":"integer","format":"int64"}}},"ResponseDto":{"type":"object","properties":{"data":{"type":"object","description":"数据"},"status":{"description":"状态","$ref":"#/definitions/Status"}}},"ResponseDto«CaptchaRsp»":{"type":"object","properties":{"data":{"description":"数据","$ref":"#/definitions/CaptchaRsp"},"status":{"description":"状态","$ref":"#/definitions/Status"}}},"ResponseDto«User»":{"type":"object","properties":{"data":{"description":"数据","$ref":"#/definitions/User"},"status":{"description":"状态","$ref":"#/definitions/Status"}}},"Status":{"type":"object","properties":{"errCode":{"type":"integer","format":"int32"},"message":{"type":"string"}}},"User":{"type":"object","properties":{"aliAccount":{"$ref":"#/definitions/AliAccount"},"availPermRoute":{"type":"array","items":{"type":"string"}},"cars":{"type":"array","items":{"$ref":"#/definitions/Car"}},"createdAt":{"type":"string","format":"date-time"},"headimgurl":{"type":"string"},"id":{"type":"integer","format":"int64"},"ifEnable":{"type":"boolean"},"lastLoginTime":{"type":"string","format":"date-time"},"name":{"type":"string"},"payPassword":{"type":"string"},"phone":{"type":"string"},"updatedAt":{"type":"string","format":"date-time"},"wechat":{"$ref":"#/definitions/Wechat"}}},"Wechat":{"type":"object","properties":{"city":{"type":"string"},"country":{"type":"string"},"createdAt":{"type":"string","format":"date-time"},"headimgurl":{"type":"string"},"nickname":{"type":"string"},"openid":{"type":"string"},"province":{"type":"string"},"sex":{"type":"integer","format":"int32"},"unionid":{"type":"string"},"updatedAt":{"type":"string","format":"date-time"},"user":{"$ref":"#/definitions/User"},"userId":{"type":"integer","format":"int64"}}}}}
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "文档搜索器-API",
+    "version": "v1",
+    "title": "文档搜索器"
+  },
+  "host": "localhost:8030",
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "被预约人模块"
+    },
+    {
+      "name": "预约记录模块"
+    },
+    {
+      "name": "管理员模块"
+    },
+    {
+      "name": "预约人模块"
+    },
+    {
+      "name": "列表项模块"
+    }
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "paths": {
+    "/api/adminUser/checkLogin": {
+      "get": {
+        "tags": [
+          "管理员模块"
+        ],
+        "summary": "检查登录状态",
+        "description": "",
+        "operationId": "checkLogin",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResponseDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/adminUser/checkPhone": {
+      "post": {
+        "tags": [
+          "管理员模块"
+        ],
+        "summary": "验证手机号",
+        "description": "",
+        "operationId": "checkPhone",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PhoneVerificationReqDto"
+            }
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/HttpServletRequest"
+            }
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/HttpServletResponse"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResponseDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/adminUser/findPassword": {
+      "post": {
+        "tags": [
+          "管理员模块"
+        ],
+        "summary": "找回密码",
+        "description": "",
+        "operationId": "findPassword",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PasswordVerificationReqDto"
+            }
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/HttpServletRequest"
+            }
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/HttpServletResponse"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResponseDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/adminUser/getAuthPhoneCaptcha": {
+      "post": {
+        "tags": [
+          "管理员模块"
+        ],
+        "summary": "获取验证码-认证",
+        "description": "",
+        "operationId": "getAuthPhoneCaptcha",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "电话号码",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/HttpServletRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResponseDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/adminUser/getAuthPhoneCaptchaNotLogin": {
+      "post": {
+        "tags": [
+          "管理员模块"
+        ],
+        "summary": "获取验证码-认证-未登录",
+        "description": "",
+        "operationId": "getAuthPhoneCaptchaNotLogin",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "电话号码",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/HttpServletRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResponseDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/adminUser/getPersonalInfo": {
+      "get": {
+        "tags": [
+          "管理员模块"
+        ],
+        "summary": "获取管理员用户信息",
+        "description": "",
+        "operationId": "getPersonalInfo",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResponseDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/adminUser/updatePassword": {
+      "post": {
+        "tags": [
+          "管理员模块"
+        ],
+        "summary": "更新密码",
+        "description": "",
+        "operationId": "updatePassword",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "新密码",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "确认密码",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResponseDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/enum/listDepartment": {
+      "get": {
+        "tags": [
+          "列表项模块"
+        ],
+        "summary": "部门列表",
+        "description": "",
+        "operationId": "listDepartment",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResponseDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/enum/listLanguages": {
+      "get": {
+        "tags": [
+          "列表项模块"
+        ],
+        "summary": "语种列表",
+        "description": "",
+        "operationId": "listLanguages",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResponseDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/reservationRecord/detail": {
+      "get": {
+        "tags": [
+          "预约记录模块"
+        ],
+        "summary": "预约记录详情",
+        "description": "",
+        "operationId": "detail",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "预约记录 ID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResponseDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/reservationRecord/list": {
+      "get": {
+        "tags": [
+          "预约记录模块"
+        ],
+        "summary": "分页获取预约记录列表",
+        "description": "",
+        "operationId": "list",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ReservationRecordQueryReqDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/PagerResponseDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/reservationRecord/updateStatus": {
+      "post": {
+        "tags": [
+          "预约记录模块"
+        ],
+        "summary": "修改记录状态",
+        "description": "",
+        "operationId": "updateStatus",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ReservationRecordUpdateReqDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResponseDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/reservationUser/detail": {
+      "get": {
+        "tags": [
+          "预约人模块"
+        ],
+        "summary": "预约记录详情",
+        "description": "",
+        "operationId": "detail",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "预约记录 ID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResponseDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/reservationUser/getRecordList": {
+      "get": {
+        "tags": [
+          "预约人模块"
+        ],
+        "summary": "预约记录列表",
+        "description": "",
+        "operationId": "getRecordList",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "预约人 ID",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ListResponseDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/reservationUser/list": {
+      "get": {
+        "tags": [
+          "预约人模块"
+        ],
+        "summary": "分页获取预约人列表",
+        "description": "",
+        "operationId": "list",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ReservationUserQueryReqDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/PagerResponseDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/reservedUser/add": {
+      "post": {
+        "tags": [
+          "被预约人模块"
+        ],
+        "summary": "新增被预约人",
+        "description": "",
+        "operationId": "add",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ReservedUserAddReqDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResponseDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/reservedUser/changePassword": {
+      "post": {
+        "tags": [
+          "被预约人模块"
+        ],
+        "summary": "修改密码",
+        "description": "",
+        "operationId": "changePassword",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ReservedUserPasswordVerificationReqDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResponseDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/reservedUser/list": {
+      "get": {
+        "tags": [
+          "被预约人模块"
+        ],
+        "summary": "分页获取被预约人列表",
+        "description": "",
+        "operationId": "list",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ReservedUserQueryReqDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/PagerResponseDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/reservedUser/update": {
+      "post": {
+        "tags": [
+          "被预约人模块"
+        ],
+        "summary": "编辑被预约人",
+        "description": "",
+        "operationId": "update",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ReservedUserUpdateReqDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResponseDto"
+            }
+          }
+        }
+      }
+    },
+    "/api/reservedUser/updateStatus": {
+      "post": {
+        "tags": [
+          "被预约人模块"
+        ],
+        "summary": "编辑被预约人账号状态",
+        "description": "",
+        "operationId": "updateStatus",
+        "produces": [
+          "application/json;charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ReservedUserUpdateStausReqDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResponseDto"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "BufferedReader": {
+      "type": "object"
+    },
+    "Cookie": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "comment": {
+          "type": "string"
+        },
+        "domain": {
+          "type": "string"
+        },
+        "maxAge": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "path": {
+          "type": "string"
+        },
+        "secure": {
+          "type": "boolean",
+          "default": false
+        },
+        "version": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "Enumeration": {
+      "type": "object"
+    },
+    "HttpServletRequest": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "type": "string"
+        },
+        "userPrincipal": {
+          "$ref": "#/definitions/Principal"
+        },
+        "session": {
+          "$ref": "#/definitions/HttpSession"
+        },
+        "requestedSessionIdValid": {
+          "type": "boolean",
+          "default": false
+        },
+        "requestedSessionIdFromUrl": {
+          "type": "boolean",
+          "default": false
+        },
+        "requestedSessionId": {
+          "type": "string"
+        },
+        "requestedSessionIdFromURL": {
+          "type": "boolean",
+          "default": false
+        },
+        "requestedSessionIdFromCookie": {
+          "type": "boolean",
+          "default": false
+        },
+        "pathTranslated": {
+          "type": "string"
+        },
+        "requestURI": {
+          "type": "string"
+        },
+        "cookies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Cookie"
+          }
+        },
+        "pathInfo": {
+          "type": "string"
+        },
+        "contextPath": {
+          "type": "string"
+        },
+        "remoteUser": {
+          "type": "string"
+        },
+        "requestURL": {
+          "$ref": "#/definitions/StringBuffer"
+        },
+        "servletPath": {
+          "type": "string"
+        },
+        "headerNames": {
+          "$ref": "#/definitions/Enumeration"
+        },
+        "queryString": {
+          "type": "string"
+        },
+        "authType": {
+          "type": "string"
+        },
+        "inputStream": {
+          "$ref": "#/definitions/ServletInputStream"
+        },
+        "protocol": {
+          "type": "string"
+        },
+        "scheme": {
+          "type": "string"
+        },
+        "contentLength": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "contentType": {
+          "type": "string"
+        },
+        "locale": {
+          "$ref": "#/definitions/Locale"
+        },
+        "attributeNames": {
+          "$ref": "#/definitions/Enumeration"
+        },
+        "localName": {
+          "type": "string"
+        },
+        "parameterMap": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
+        },
+        "reader": {
+          "$ref": "#/definitions/BufferedReader"
+        },
+        "characterEncoding": {
+          "type": "string"
+        },
+        "parameterNames": {
+          "$ref": "#/definitions/Enumeration"
+        },
+        "secure": {
+          "type": "boolean",
+          "default": false
+        },
+        "remotePort": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "localAddr": {
+          "type": "string"
+        },
+        "localPort": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "serverName": {
+          "type": "string"
+        },
+        "serverPort": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "remoteAddr": {
+          "type": "string"
+        },
+        "remoteHost": {
+          "type": "string"
+        },
+        "locales": {
+          "$ref": "#/definitions/Enumeration"
+        }
+      }
+    },
+    "HttpServletResponse": {
+      "type": "object",
+      "properties": {
+        "locale": {
+          "$ref": "#/definitions/Locale"
+        },
+        "contentType": {
+          "type": "string"
+        },
+        "outputStream": {
+          "$ref": "#/definitions/ServletOutputStream"
+        },
+        "writer": {
+          "$ref": "#/definitions/PrintWriter"
+        },
+        "characterEncoding": {
+          "type": "string"
+        },
+        "committed": {
+          "type": "boolean",
+          "default": false
+        },
+        "bufferSize": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "HttpSession": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "creationTime": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "attributeNames": {
+          "$ref": "#/definitions/Enumeration"
+        },
+        "sessionContext": {
+          "$ref": "#/definitions/HttpSessionContext"
+        },
+        "maxInactiveInterval": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "servletContext": {
+          "$ref": "#/definitions/ServletContext"
+        },
+        "lastAccessedTime": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "new": {
+          "type": "boolean",
+          "default": false
+        },
+        "valueNames": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "HttpSessionContext": {
+      "type": "object",
+      "properties": {
+        "ids": {
+          "$ref": "#/definitions/Enumeration"
+        }
+      }
+    },
+    "ListResponseDto": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "description": "状态",
+          "$ref": "#/definitions/Status"
+        },
+        "data": {
+          "type": "array",
+          "description": "数据",
+          "items": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "Locale": {
+      "type": "object",
+      "properties": {
+        "country": {
+          "type": "string"
+        },
+        "displayCountry": {
+          "type": "string"
+        },
+        "displayLanguage": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "displayScript": {
+          "type": "string"
+        },
+        "displayVariant": {
+          "type": "string"
+        },
+        "extensionKeys": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "iso3Country": {
+          "type": "string"
+        },
+        "iso3Language": {
+          "type": "string"
+        },
+        "script": {
+          "type": "string"
+        },
+        "unicodeLocaleAttributes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "unicodeLocaleKeys": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "variant": {
+          "type": "string"
+        },
+        "language": {
+          "type": "string"
+        }
+      }
+    },
+    "PagerObject": {
+      "type": "object",
+      "properties": {
+        "currentPage": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "perPage": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "array": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "extras": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "totalPageNo": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "PagerResponseDto": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "description": "状态",
+          "$ref": "#/definitions/Status"
+        },
+        "data": {
+          "description": "数据",
+          "$ref": "#/definitions/PagerObject"
+        }
+      }
+    },
+    "PasswordVerificationReqDto": {
+      "type": "object",
+      "properties": {
+        "phone": {
+          "type": "string",
+          "description": "手机号"
+        },
+        "password": {
+          "type": "string",
+          "description": "新密码"
+        },
+        "secondPassword": {
+          "type": "string",
+          "description": "再次新密码"
+        }
+      }
+    },
+    "PhoneVerificationReqDto": {
+      "type": "object",
+      "properties": {
+        "phone": {
+          "type": "string",
+          "description": "手机号"
+        },
+        "captcha": {
+          "type": "string",
+          "description": "验证码"
+        }
+      }
+    },
+    "Principal": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "PrintWriter": {
+      "type": "object"
+    },
+    "ReservationRecordQueryReqDto": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "format": "int64",
+          "minimum": 1.0
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "minimum": 1.0
+        },
+        "condition": {
+          "type": "string",
+          "description": "预约人/被预约人姓名"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32",
+          "description": "预约状态；0：待接受，1：接受，2：拒绝"
+        }
+      }
+    },
+    "ReservationRecordUpdateReqDto": {
+      "type": "object",
+      "properties": {
+        "recordId": {
+          "type": "string"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "ReservationUserQueryReqDto": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "format": "int64",
+          "minimum": 1.0
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "minimum": 1.0
+        },
+        "nickname": {
+          "type": "string",
+          "description": "微信昵称"
+        },
+        "startTime": {
+          "type": "string",
+          "description": "注册时间-开始"
+        },
+        "endTime": {
+          "type": "string",
+          "description": "注册时间-结束"
+        }
+      }
+    },
+    "ReservedLanguagesAddReqDto": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "语种编号"
+        },
+        "level": {
+          "type": "string",
+          "description": "语种水平"
+        }
+      }
+    },
+    "ReservedUserAddReqDto": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id, 更新时 id 不能为空"
+        },
+        "username": {
+          "type": "string",
+          "description": "账号"
+        },
+        "password": {
+          "type": "string",
+          "description": "密码"
+        },
+        "name": {
+          "type": "string",
+          "description": "姓名"
+        },
+        "phone": {
+          "type": "string",
+          "description": "手机"
+        },
+        "position": {
+          "type": "string",
+          "description": "职位"
+        },
+        "department": {
+          "type": "integer",
+          "format": "int32",
+          "description": "所属部门"
+        },
+        "university": {
+          "type": "string",
+          "description": "毕业院校"
+        },
+        "languagesAddReqDtos": {
+          "type": "array",
+          "description": "语种数组",
+          "items": {
+            "$ref": "#/definitions/ReservedLanguagesAddReqDto"
+          }
+        }
+      }
+    },
+    "ReservedUserPasswordVerificationReqDto": {
+      "type": "object",
+      "properties": {
+        "reservedUserId": {
+          "type": "string",
+          "description": "被预约人ID"
+        },
+        "password": {
+          "type": "string",
+          "description": "新密码"
+        },
+        "secondPassword": {
+          "type": "string",
+          "description": "再次新密码"
+        }
+      }
+    },
+    "ReservedUserQueryReqDto": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "format": "int64",
+          "minimum": 1.0
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "minimum": 1.0
+        },
+        "condition": {
+          "type": "string",
+          "description": "账号/姓名/手机号"
+        },
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "语种编号"
+        },
+        "department": {
+          "type": "integer",
+          "format": "int32",
+          "description": "所属部门"
+        },
+        "userStatus": {
+          "type": "integer",
+          "format": "int32",
+          "description": "是否启用；0：禁用，1：启用"
+        }
+      }
+    },
+    "ReservedUserUpdateReqDto": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id, 更新时 id 不能为空"
+        },
+        "username": {
+          "type": "string",
+          "description": "账号"
+        },
+        "name": {
+          "type": "string",
+          "description": "姓名"
+        },
+        "phone": {
+          "type": "string",
+          "description": "手机"
+        },
+        "position": {
+          "type": "string",
+          "description": "职位"
+        },
+        "department": {
+          "type": "integer",
+          "format": "int32",
+          "description": "所属部门"
+        },
+        "university": {
+          "type": "string",
+          "description": "毕业院校"
+        },
+        "languagesAddReqDtos": {
+          "type": "array",
+          "description": "语种数组",
+          "items": {
+            "$ref": "#/definitions/ReservedLanguagesAddReqDto"
+          }
+        }
+      }
+    },
+    "ReservedUserUpdateStausReqDto": {
+      "type": "object",
+      "properties": {
+        "reservedUserId": {
+          "type": "string",
+          "description": "被预约人ID"
+        },
+        "userStatus": {
+          "type": "integer",
+          "format": "int32",
+          "description": "是否启用；0：禁用，1：启用"
+        }
+      }
+    },
+    "ResponseDto": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "description": "状态",
+          "$ref": "#/definitions/Status"
+        },
+        "data": {
+          "type": "object",
+          "description": "数据"
+        }
+      }
+    },
+    "ServletContext": {
+      "type": "object",
+      "properties": {
+        "attributeNames": {
+          "$ref": "#/definitions/Enumeration"
+        },
+        "majorVersion": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "minorVersion": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "initParameterNames": {
+          "$ref": "#/definitions/Enumeration"
+        },
+        "servletContextName": {
+          "type": "string"
+        },
+        "servlets": {
+          "$ref": "#/definitions/Enumeration"
+        },
+        "servletNames": {
+          "$ref": "#/definitions/Enumeration"
+        },
+        "serverInfo": {
+          "type": "string"
+        },
+        "contextPath": {
+          "type": "string"
+        }
+      }
+    },
+    "ServletInputStream": {
+      "type": "object"
+    },
+    "ServletOutputStream": {
+      "type": "object"
+    },
+    "Status": {
+      "type": "object",
+      "properties": {
+        "errCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "StringBuffer": {
+      "type": "object"
+    }
+  }
+}
