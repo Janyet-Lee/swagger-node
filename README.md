@@ -2,7 +2,8 @@
 - 复制private.config.example.js并重命名为private.config.js
 - npm install 安装项目依赖
 - npm run build 使用browserify生成浏览器支持的服务端js模块(注意：每次添加新的接口json文件时候请跑这一步)
-- npm run start 启动服务器进程
+- 本地查看 npm run start 启动服务器进程
+- 跑在服务器 npm run forever 启动服务器进程
 
 ## 使用方式
 
